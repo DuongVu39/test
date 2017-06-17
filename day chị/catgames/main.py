@@ -47,7 +47,7 @@ ground = GameController(groundmodel, groundview)
 
 food = [fish for fish in fish_sonhieu]
 food.append(bone)
-# catmodel.dead = False
+score = 0
 
 while not done:
     for event in pygame.event.get():
@@ -55,20 +55,23 @@ while not done:
             done = True
         cat.handle_input(event)
 
-    score_text = myfont.render("Score = ",1,(0,0,0))
-    screen.blit(score_text, (1, 1))
     ground.draw()
     bone.draw()
     for fish in fish_sonhieu:
         fish.draw()
-# if catmodel.check_dead() == False:
-    cat.update(food)
-    cat.draw ()
-    # if catmodel.collide(fishmodel, catview) == True:
-    #     print("vao")
+
+    if cat.point_collide(food) == True:
+        score += 1
+
+    if catmodel.check_dead() == False:
+        cat.update(food)
+        cat.draw ()
+    else:
+        score_text = pygame.font.SysFont("monospace", 100).render("YOU LOSE", 1, (255, 255, 0))
+        screen.blit(score_text, (200, 200))
 
 
-
-
+    score_text = myfont.render("Score = "+str(score),1,(0,0,0))
+    screen.blit(score_text, (1, 1))
     pygame.display.flip()
 

@@ -6,10 +6,10 @@ class GameView:
         self.screen = screen
 
     def draw(self,gamemodel, active):
-        gamemodel.y += 1
+        # gamemodel.y += 1
         self.screen.blit(self.image,(gamemodel.x,gamemodel.y ))
-        if gamemodel.y >= 200:
-            gamemodel.y = 0
+        # if gamemodel.y >= 200:
+        #     gamemodel.y = 0
 
     def check_map(y):
         if y < 225 or y > 600:

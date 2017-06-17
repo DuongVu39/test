@@ -55,7 +55,10 @@ class GameController:
                 food.active = False
                 food.gamemodel.revive()
 
-
+    def point_collide(self, food_list):
+        for food in food_list:
+            if self.gamemodel.collide(food, self.gameview):
+                return True
 
     def update(self, food):
         dx = 0
@@ -67,6 +70,8 @@ class GameController:
             dx -= 2
         self.move(dx * 2, dy * 2)
         self.eat(food)
+
+
     #     if self.current_level < level:
     #         self.current_level = level
     #         self.gameview.time -= 5
