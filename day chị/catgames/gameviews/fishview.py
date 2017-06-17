@@ -12,10 +12,9 @@ class FishView:
 
 
     def draw(self, model, active):
-
         self.counter +=1
         if self.counter >=self.time:
-            model.y += 2
+            model.y += 4
 
         if model.y >= 900:
             model.y = 0

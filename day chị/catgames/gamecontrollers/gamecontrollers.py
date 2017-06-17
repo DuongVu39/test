@@ -36,8 +36,8 @@ class GameController:
                 self.right_pressed = True
             elif event.key == pygame.K_LEFT:
                 self.left_pressed = True
-            # elif event.key == pygame.K_r:
-            #      main()
+            elif event.key == pygame.K_F5:
+                pass
 
             elif event.key == pygame.K_ESCAPE:
                 quit ()

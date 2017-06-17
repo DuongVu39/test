@@ -5,8 +5,9 @@ class GameView:
         self.screen = screen
 
     def draw(self,gamemodel, active):
-        # gamemodel.y += 1
-        self.screen.blit(self.image,(gamemodel.x,gamemodel.y ))
+        #
+        # gamemodel.y += 20
+        self.screen.blit ( self.image, (gamemodel.x, gamemodel.y) )
         # if gamemodel.y >= 200:
         #     gamemodel.y = 0
 
