@@ -60,7 +60,7 @@ food = [fish for fish in fish_s]
 # food.append(bone)
 
 # catmodel.dead = False
-heath=3
+health=5
 levels=1
 score=0
 level = 0
@@ -81,9 +81,11 @@ while not done:
     if cat.point_collide(food) == True:
         score +=1
         sound_eat.play()
-    if cat.heath_collide(bone) == True:
-        heath -=1
-    if catmodel.check_dead () == False:
+    if cat.dont_eat(bone)==True:
+        health-=1
+        cat.dont_eat(bone) == False
+
+    if catmodel.check_dead () == False and health > 0:
         cat.update(food)
         cat.draw ()
     else:
@@ -99,7 +101,7 @@ while not done:
     level_text = myfont.render ("Level: " + str ( levels), 1, (0, 100, 0) )
     screen.blit(level_text,(10,20))
 
-    heath_text = myfont.render("Heath: "+str(heath),1,(0,100,0))
+    heath_text = myfont.render("Health: "+str(health),1,(0,100,0))
     screen.blit(heath_text,(10,40))
 
     target_score = 10+ 10*level_current

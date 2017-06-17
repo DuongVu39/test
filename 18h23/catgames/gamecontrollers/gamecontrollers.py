@@ -55,10 +55,11 @@ class GameController:
                 food.active = False
                 food.gamemodel.revive()
 
-    # def dont_eat(self,bone):
-    #     if self.gamemodel.collide ( bone, self.gameview ):
-    #        bone.active = True
-    #        bone.gamemodel.revive ()
+    def dont_eat(self,bone):
+        if self.gamemodel.collide ( bone, self.gameview ):
+           bone.active = False
+           bone.gamemodel.revive ()
+           return  True
 
     def point_collide(self,food_list):
         for food in food_list:
