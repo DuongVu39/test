@@ -11,9 +11,8 @@ import pygame
 
 pygame.init()
 screen = pygame.display.set_mode((900, 600))
-myfont = pygame.font.SysFont("monospace", 16)
 done = False
-
+myfont = pygame.font.SysFont("monospace",20)
 
 catmodel = GameModel(325, 400)
 catmodel.move(50, 50)
@@ -25,13 +24,14 @@ fishmodel = GameModel((random.randrange(225,600)),50)
 fish_list=[
     pygame.image.load("images/fish1.png"),
     pygame.image.load ( "images/fish2.png" ),
-    pygame.image.load ( "images/fish3.png" ),
-    pygame.image.load ( "images/fish4.png" )
+    pygame.image.load ( "images/fish3.png" )
+
 ]
 
 cat_animations = [
-    pygame.image.load("images/cat_right.png"),
-    pygame.image.load("images/cat_left.png")
+    pygame.image.load("images/catleft1.png"),
+    pygame.image.load("images/catright1.png"),
+
                     ]
 catview = CatView(cat_animations, screen)
 groundview = GameView(pygame.image.load("images/background.png"), screen)
@@ -39,26 +39,47 @@ fishview = FishView ( random.choice ( fish_list ), screen )
 boneview = BoneView(pygame.image.load("images/bone.png"),screen)
 
 fish = GameController(fishmodel,fishview)
-fish_sonhieu = [fish]
-fish_sonhieu.append(GameController(GameModel((random.randrange(225,600)),200), FishView ( random.choice ( fish_list ), screen )))
+fish_s = [fish]
+fish_s.append(GameController(GameModel((random.randrange(225,600)),-50), FishView ( random.choice ( fish_list ), screen )))
+fish_s.append(GameController(GameModel((random.randrange(225,600)),-100), FishView ( random.choice ( fish_list ), screen )))
+
 bone = GameController(bonemodel,boneview)
 cat = GameController(catmodel, catview)
 ground = GameController(groundmodel, groundview)
-
-food = [fish for fish in fish_sonhieu]
+food = [fish for fish in fish_s]
 food.append(bone)
+<<<<<<< HEAD
 score = 0
 
+=======
+# catmodel.dead = False
+score=0
+>>>>>>> ebdd7d6d9077bdf2070e44c33cfdb88f12f13017
 while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
         cat.handle_input(event)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ebdd7d6d9077bdf2070e44c33cfdb88f12f13017
     ground.draw()
+
     bone.draw()
-    for fish in fish_sonhieu:
+    for fish in fish_s:
         fish.draw()
+<<<<<<< HEAD
+=======
+    # if catmodel.check_dead() == False:
+    if cat.point_collide(food) == True:
+        score +=1
+    cat.update(food)
+    cat.draw ()
+    score_text = myfont.render("Score = "+ str(score),1,(0,0,0))
+    screen.blit(score_text,(1,1))
+>>>>>>> ebdd7d6d9077bdf2070e44c33cfdb88f12f13017
 
     if cat.point_collide(food) == True:
         score += 1

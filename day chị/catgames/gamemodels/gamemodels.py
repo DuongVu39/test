@@ -15,13 +15,22 @@ class GameModel:
             self.dead = True
         return self.dead
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> ebdd7d6d9077bdf2070e44c33cfdb88f12f13017
     def collide(self, itemcontroller, catview):
         item = itemcontroller.gamemodel
         item_view = itemcontroller.gameview
 
+<<<<<<< HEAD
         if (item.x <= self.x + catview.width) and (item.x + item_view.width >= self.x) and (item.y <= self.y + catview.height) and (item.y + item_view.height>= self.y):
-            return True
+=======
 
+        if (item.x <= self.x +catview.width) and (item.x +item_view.width >= self.x) and (item.y <= self.y + catview.height) and (item.y+ item_view.height >= self.y ):
+>>>>>>> ebdd7d6d9077bdf2070e44c33cfdb88f12f13017
+            return True
         else:
             return  False
 

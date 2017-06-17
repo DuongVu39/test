@@ -3,8 +3,8 @@ import random
 fish_list=[
     pygame.image.load("images/fish1.png"),
     pygame.image.load ( "images/fish2.png" ),
-    pygame.image.load ( "images/fish3.png" ),
-    pygame.image.load ( "images/fish4.png" )
+    pygame.image.load ( "images/fish3.png" )
+
 ]
 class GameController:
     def __init__(self, gamemodel, gameview):
@@ -17,7 +17,7 @@ class GameController:
 
     def check_active(self):
         if self.active == False:
-            t = random.randint(0,3)
+            t = random.randint(0,2)
             self.gameview.image = fish_list[t]
             self.active = True
 
@@ -55,7 +55,12 @@ class GameController:
                 food.active = False
                 food.gamemodel.revive()
 
+<<<<<<< HEAD
     def point_collide(self, food_list):
+=======
+
+    def point_collide(self,food_list):
+>>>>>>> ebdd7d6d9077bdf2070e44c33cfdb88f12f13017
         for food in food_list:
             if self.gamemodel.collide(food, self.gameview):
                 return True
