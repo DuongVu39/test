@@ -62,11 +62,15 @@ while not done:
     bone.draw()
     for fish in fish_s:
         fish.draw()
-    # if catmodel.check_dead() == False:
+
     if cat.point_collide(food) == True:
         score +=1
-    cat.update(food)
-    cat.draw ()
+    if catmodel.check_dead () == False:
+        cat.update(food)
+        cat.draw ()
+    else:
+        score_text = pygame.font._SysFont("monospace",100).render("YOU LOSE",1,(255,255,0))
+        screen.blit(score_text,)
     score_text = myfont.render("Score = "+ str(score),1,(0,0,0))
     screen.blit(score_text,(1,1))
 
