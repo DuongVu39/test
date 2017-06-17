@@ -23,7 +23,7 @@ class GameModel:
         item_view = itemcontroller.gameview
 
 
-        if (item.x <= self.x+catview.width & item.x +item_view.width >= self.x & item.y <= self.y + catview.height & item.y+ item_view.height>= self.y  ):
+        if (item.x <= self.x + catview.width & item.x + item_view.width >= self.x & item.y <= self.y + catview.height & item.y+ item_view.height>= self.y):
 
         # if  (item.x <= self.x <=  item.x + item_view.width) and (item.y <= self.y <=  item.y + item_view.height):
         #     return True
