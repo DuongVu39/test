@@ -64,6 +64,7 @@ class GameController:
     def point_collide(self,food_list):
         for food in food_list:
             if self.gamemodel.collide(food, self.gameview):
+                food.active = False
                 return True
     def heath_collide(self,bones):
         if self.gamemodel.collide(bones,self.gameview):
