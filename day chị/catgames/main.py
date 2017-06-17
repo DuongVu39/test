@@ -11,6 +11,7 @@ import pygame
 
 pygame.init()
 screen = pygame.display.set_mode((900, 600))
+myfont = pygame.font.SysFont("monospace", 16)
 done = False
 
 
@@ -54,7 +55,8 @@ while not done:
             done = True
         cat.handle_input(event)
 
-
+    score_text = myfont.render("Score = ",1,(0,0,0))
+    screen.blit(score_text, (1, 1))
     ground.draw()
     bone.draw()
     for fish in fish_sonhieu:
