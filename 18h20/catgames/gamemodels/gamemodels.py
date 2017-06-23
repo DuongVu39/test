@@ -16,7 +16,6 @@ class GameModel:
         return self.dead
 
 
-
     def collide(self, itemcontroller, catview):
         item = itemcontroller.gamemodel
         item_view = itemcontroller.gameview

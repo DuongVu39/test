@@ -1,5 +1,12 @@
 import  pygame
 import random
+pygame.init()
+
+bigfont = pygame.font.Font(None, 80)
+score = 0
+health = 5
+screen = pygame.display.set_mode((900, 600))
+
 fish_list=[
     pygame.image.load("images/fish1.png"),
     pygame.image.load ( "images/fish2.png" ),
@@ -14,7 +21,8 @@ class GameController:
         self.active = True
         self.right_pressed = False
         self.left_pressed = False
-        self.speed= 2
+        self.speed = 2
+
     def check_active(self):
         if self.active == False:
             t = random.randint(0,2)
@@ -28,8 +36,14 @@ class GameController:
     def move(self, dx, dy):
         self.gamemodel.move ( dx, dy )
 
-    def handle_input(self, event):
+    def play_again(self):
+        text = pygame.font.SysFont("monospace", 100).render("PLAY AGAIN?", 1, (255, 255, 0))
+        screen.blit(text,(450 - text.get_width() / 2,
+                         150 - text.get_height() / 2))
 
+    def handle_input(self, event):
+        global score
+        global health
         if event.type == pygame.KEYDOWN:
 
             if event.key == pygame.K_RIGHT:
@@ -37,8 +51,10 @@ class GameController:
             elif event.key == pygame.K_LEFT:
                 self.left_pressed = True
             elif event.key == pygame.K_F5:
-                pass
-
+                self.play_again()
+                score = 0
+                health = 5
+                self.speed = 4
             elif event.key == pygame.K_ESCAPE:
                 quit ()
 
@@ -48,15 +64,17 @@ class GameController:
             elif event.key == pygame.K_LEFT:
                 self.left_pressed = False
 
-
     def eat(self, food_list):
+        global score
         for food in food_list:
             if self.gamemodel.collide(food, self.gameview):
                 food.active = False
                 food.gamemodel.revive()
+                score += 1
+        return score
 
     def dont_eat(self,bone):
-        if self.gamemodel.collide ( bone, self.gameview ):
+        if self.gamemodel.collide (bone, self.gameview ):
            bone.active = False
            bone.gamemodel.revive ()
            return  True
@@ -64,11 +82,12 @@ class GameController:
     def point_collide(self,food_list):
         for food in food_list:
             if self.gamemodel.collide(food, self.gameview):
-                food.active = False
                 return True
+
     def heath_collide(self,bones):
         if self.gamemodel.collide(bones,self.gameview):
-            return  True
+            return True
+
     def update(self, food):
         dx = 0
         dy = 0

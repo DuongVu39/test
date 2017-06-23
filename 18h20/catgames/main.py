@@ -15,7 +15,6 @@ sound_eat = pygame.mixer.Sound( "music/eat.wav" )
 pygame.mixer.music.load("music/bg_music.mp3")
 pygame.mixer.music.play(-1)
 
-
 screen = pygame.display.set_mode((900, 600))
 done = False
 myfont = pygame.font.SysFont("monospace",20,bold=True)
@@ -59,13 +58,11 @@ wood = GameController(woodmodel, woodview)
 food = [fish for fish in fish_s]
 # food.append(bone)
 
-# catmodel.dead = False
-health=5
-levels=1
-score=0
-level = 0
-level_current = 0
-text_time = 3
+health = 5
+score = 0
+level = 1
+level_current = 1
+
 while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -78,38 +75,52 @@ while not done:
     for fish in fish_s:
         fish.draw()
 
+    score = cat.eat(food)
+
+    # if cat.reset() == False:
+    #     print("Vao")
+    #     # cat.draw()
+    #     cat.update(food)
+    #     fish.gameview.speed = 4
+    #     level_current = 1
+    #     level = 1
+    #     sound_end.stop()
+
     if cat.point_collide(food) == True:
-        score +=1
+        print("Vao")
         sound_eat.play()
-    if cat.dont_eat(bone)==True:
+
+    if cat.dont_eat(bone) == True:
         health-=1
         cat.dont_eat(bone) == False
 
     if catmodel.check_dead () == False and health > 0:
         cat.update(food)
         cat.draw ()
+
     else:
         score_text = pygame.font.SysFont("monospace",100).render("YOU LOSE",1,(255,255,0))
         screen.blit(score_text,(200,200))
+        health = 0
         sound_end.play()
         pygame.mixer.music.stop()
-
 
     score_text = myfont.render("Score: "+ str(score),1,(0,100,0))
     screen.blit(score_text,(10,1))
 
-    level_text = myfont.render ("Level: " + str ( levels), 1, (0, 100, 0) )
+    level_text = myfont.render ("Level: " + str (level), 1, (0, 100, 0) )
     screen.blit(level_text,(10,20))
 
     heath_text = myfont.render("Health: "+str(health),1,(0,100,0))
     screen.blit(heath_text,(10,40))
 
     target_score = 10+ 10*level_current
+
+    if score == target_score:
+        score_text = pygame.font.SysFont("monospace", 100).render("Level Up!", 1, (255, 255, 0))
+        screen.blit(score_text, (200, 200))
+
     if level == level_current and score ==target_score:
-        score_text = pygame.font.SysFont ( "monospace", 100 ).render ( "Level Up!", 1, (255, 255, 0) )
-        screen.blit ( score_text, (200, 200) )
-        text_time -= 1
-        levels+=1
         for fish in fish_s:
             fish.gameview.speed += 0.5
             fish.draw ()
@@ -117,9 +128,6 @@ while not done:
         cat.speed += 0.5
         level_current += 1
         level += 1
-
-
-
 
     pygame.display.flip()
 
