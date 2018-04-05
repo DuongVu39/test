@@ -1,9 +1,9 @@
 
-<h5 align="center">
+<h1 align="center">
   <br>
 Hungry Cat
 <br>
-</h5>
+</h1>
 
 <h4 align="center">A simple game of a cat eating fish</a>.</h4>
 
@@ -15,12 +15,6 @@ Created by</a></h5>
 [Duong Vu](https://github.com/duongvu39) &nbsp;&middot;&nbsp;
 </a></h4>
 
-<br>
-<h4 align="center">
-
-[![Travis](https://img.shields.io/travis/johannesharmse/watsonNLU.svg?style=social)](https://github.com/duongvu39/Hungry-Cat)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</a></h4>
 
 
 <h1></h1>
